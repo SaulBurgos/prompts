@@ -8,4 +8,15 @@
   - Start or continue adding prompt files (one per prompt) under a `prompts/` folder.
   - Update this context file after significant structural or workflow changes.
 
+## 2025-11-19 - Tasks Documentation Added
+
+- **Status**: Added task documentation system for reusable workflows.
+- **Recent changes**:
+  - Created `tasks.md` with first task: "Add Command" for creating new Cursor commands.
+  - Documented the standard template structure for Cursor commands (Overview, Steps, Checklist).
+  - Established pattern for simple tasks (inline in `tasks.md`) vs complex tasks (separate files).
+- **Next steps**:
+  - Use the "Add Command" task when creating new Cursor commands.
+  - Add more tasks as repetitive workflows are identified.
+
 
