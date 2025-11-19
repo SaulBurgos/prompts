@@ -15,6 +15,8 @@
   - Created `tasks.md` with first task: "Add Command" for creating new Cursor commands.
   - Documented the standard template structure for Cursor commands (Overview, Steps, Checklist).
   - Established pattern for simple tasks (inline in `tasks.md`) vs complex tasks (separate files).
+  - Updated "Add Command" task to align with official Cursor Commands documentation (https://cursor.com/docs/agent/chat/commands).
+  - Added details about command locations (project/global/team), parameters, and how commands appear with `/` prefix.
 - **Next steps**:
   - Use the "Add Command" task when creating new Cursor commands.
   - Add more tasks as repetitive workflows are identified.
