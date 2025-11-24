@@ -38,6 +38,7 @@ Guide the user through adding a new prompt to their personal prompt library. Thi
 - [ ] File includes `# Prompt` section
 - [ ] File includes `## Notes` section (if notes provided)
 - [ ] Used minimal line breaks (one blank line between sections, no extra blank lines within sections)
+- [ ] The user prompt text should be wrap three simple backticks (```) similar to code in markdownfiles
 - [ ] Reviewed file content with user
 - [ ] Added file to git
 - [ ] Committed with descriptive message
