@@ -174,7 +174,7 @@ For projects with extensive history (6+ months or 500+ lines in `context.md`), u
 5. Archive very old content if needed
 
 **Example:**
-```markdown
+`
 ### Monthly: November 2025
 - Focus: Actor development and integration planning
 - Changes: Retry logic, data fetchers, schemas
@@ -184,7 +184,7 @@ For projects with extensive history (6+ months or 500+ lines in `context.md`), u
 - Focus: Retry logic implementation
 - Changes: orchestrator.py refactoring (Nov 6)
 - Status: Tested and deployed
-```
+`
 
 **Decision Criteria:**
 - Basic: <6 months, <500 lines, infrequent updates
@@ -284,7 +284,7 @@ To execute Add Task workflow:
 4. **Include Context**: Document any discoveries made during task execution
 
 Example simple task entry:
-```markdown
+`
 ## Add New Model Support
 **Purpose:** Add support for a new AI model version to the system
 **Files to modify:**
@@ -303,7 +303,7 @@ Example simple task entry:
 - Check Google's documentation for exact token limits
 - Ensure backward compatibility with existing configurations
 - Test with actual API calls before committing
-```
+`
 
 Example complex task entry (in tasks.md):
 `
@@ -330,7 +330,7 @@ Example complex task entry (in tasks.md):
 - If you discover the template needs improvement, note it in `context.md` and suggest updating the template after task completion
 
 **Progress Tracking Pattern:**
-```markdown
+`
 ## Recent Changes
 
 ### YYYY-MM-DD - [Task Name] Implementation
@@ -341,7 +341,7 @@ Example complex task entry (in tasks.md):
 - **Current**: Working on [specific step]
 - **Next**: [next phase or step]
 - **Issues/Decisions**: [any deviations from template]
-```
+`
 
 ## Context Window Management
 
