@@ -39,9 +39,7 @@ git commit -m "chore: initial prompt library"
 
 1. **Create the file** in `prompts/`:
    - Example: `prompts/coding-debugging-helper.md`
-2. **Write the content** inside the file, for example:
-   - `# Prompt`
-   - `## Notes`
+2. **Write the content** inside the file (see file structure above for `# Prompt` and `## Notes` sections)
 3. **Add and commit** the new prompt:
 
 ```bash
@@ -146,11 +144,11 @@ If I ever want to copy or restore text from that tagged version, I can inspect i
 
 ---
 
-### Where to put my notes about prompts
+### Notes about prompts
 
-- **Inside each prompt file**:
-  - Use a `## Notes` section to write:
-    - When I use this prompt.
-    - What works well / what doesn’t.
-    - Example conversations or usage tips.
-- Because the notes live in the same file, Git automatically tracks changes to both the **prompt text** and my **notes** together over time.
+Notes go in the `## Notes` section of each prompt file (see file structure above). Use it for:
+- When to use this prompt
+- What works well / what doesn't
+- Example conversations or usage tips
+
+Because notes live in the same file, Git automatically tracks changes to both the **prompt text** and **notes** together over time.
