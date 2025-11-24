@@ -1,3 +1,7 @@
+## Notes
+
+Based on this paper: https://arxiv.org/abs/2305.10250
+
 # Prompt
 
 ```
@@ -377,8 +381,3 @@ This Memory Bank system operates within the project's existing coding and commun
 - REMEMBER: After every memory reset, You begin completely fresh. The Memory Bank is your only link to previous work. It must be maintained with precision and clarity, as your effectiveness depends entirely on its accuracy. If you detect inconsistencies between memory bank files, you should prioritize `brief.md` and note any discrepancies to the user.
 - IMPORTANT: You MUST read ALL memory bank files when user explicitly requests with the phrase `init memory bank` - this is not optional. The memory bank files are located in `.cursor/rules/memory-bank` folder.
 ```
-
-## Notes
-
-Based on this paper: https://arxiv.org/abs/2305.10250
-

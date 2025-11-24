@@ -17,8 +17,8 @@ I store all prompts as Markdown files in a simple structure:
 
 Each prompt file can include:
 
+- `## Notes` – comments on how it works, ideas, examples, etc. (comes first)
 - `# Prompt` – the actual text I paste/use.
-- `## Notes` – comments on how it works, ideas, examples, etc.
 
 ---
 
@@ -39,7 +39,7 @@ git commit -m "chore: initial prompt library"
 
 1. **Create the file** in `prompts/`:
    - Example: `prompts/coding-debugging-helper.md`
-2. **Write the content** inside the file (see file structure above for `# Prompt` and `## Notes` sections)
+2. **Write the content** inside the file (see file structure above for `## Notes` and `# Prompt` sections)
 3. **Add and commit** the new prompt:
 
 ```bash

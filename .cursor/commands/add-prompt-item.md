@@ -15,8 +15,8 @@ Guide the user through adding a new prompt to their personal prompt library. Thi
 2. **Create the Prompt File**
    - Create the file: `prompts/{prompt-name}.md` (using kebab-case filename)
    - Structure the file according to `README.md` format (see Important Notes for formatting details):
-     - `# Prompt` section with the actual prompt text
      - `## Notes` section with usage notes, tips, examples (if provided)
+     - `# Prompt` section with the actual prompt text
    - Follow formatting rules in Important Notes section
 
 3. **Review and Confirm**
@@ -34,8 +34,8 @@ Guide the user through adding a new prompt to their personal prompt library. Thi
 - [ ] Asked user for prompt text content
 - [ ] Asked user for notes/usage information (optional)
 - [ ] Created file in `prompts/` folder with correct structure
-- [ ] File includes `# Prompt` section (with prompt text wrapped in triple backticks)
 - [ ] File includes `## Notes` section (if notes provided)
+- [ ] File includes `# Prompt` section (with prompt text wrapped in triple backticks)
 - [ ] Followed all formatting rules from Important Notes section
 - [ ] Reviewed file content with user
 - [ ] Added file to git
@@ -46,8 +46,8 @@ Guide the user through adding a new prompt to their personal prompt library. Thi
 
 - **File naming**: Use kebab-case (e.g., `coding-debugging-helper.md`, `writing-idea-brainstorm.md`)
 - **File structure**: Follow `README.md` format:
+  - `## Notes` - comments, usage tips, examples (comes first)
   - `# Prompt` - the actual prompt text (wrapped in triple backticks ``` like a code block)
-  - `## Notes` - comments, usage tips, examples
 - **Formatting rules**:
   - Use minimal line breaks: one blank line between sections, no extra blank lines within sections
   - Wrap prompt text in triple backticks (```) similar to code blocks in Markdown files
