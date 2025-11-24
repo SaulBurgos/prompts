@@ -28,11 +28,11 @@ This document contains reusable workflows for common operations in this prompt l
 
 1. **Create the command file**
    - Navigate to `.cursor/commands/` directory in project root (create it if it doesn't exist)
-   - Create a new file: `{your-command-name}.md` (use kebab-case for the filename, e.g., `review-code.md`, `write-tests.md`)
+   - Create a new file: `{your-command-name}.md` (see Important notes for naming conventions)
 
 2. **Write the command content**
-   - Commands are plain Markdown files describing what the command should do
-   - Use the following suggested template structure (flexible based on your needs):
+   - Commands are plain Markdown files (see Important notes for format details)
+   - Use the following suggested template structure:
 
 ```markdown
 # [Command Name]
@@ -69,9 +69,9 @@ This document contains reusable workflows for common operations in this prompt l
 
 **Important notes:**
 - **Directory structure**: `.cursor/commands/` must exist in project root for project commands
-- **File naming**: Use kebab-case (e.g., `add-new-prompt.md`, `review-prompt-history.md`, `code-review-checklist.md`)
-- **Content format**: Plain Markdown - the template structure is suggested but flexible
-- **Parameters**: Users can add context after the command name (e.g., `/review-code in src/utils/`)
+- **File naming**: Use kebab-case for filenames (e.g., `add-new-prompt.md`, `review-prompt-history.md`, `code-review-checklist.md`)
+- **Content format**: Plain Markdown files - the template structure above is suggested but flexible based on your needs
+- **Parameters**: Commands accept parameters - any text typed after the command name is included (e.g., `/review-code in src/utils/`)
 - **Reference**: See [Cursor Commands Documentation](https://cursor.com/docs/agent/chat/commands) for official details
 
 **Example:**
