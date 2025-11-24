@@ -44,9 +44,9 @@ The Memory Bank consists of core files and optional context files, all in Markdo
 
 Example of prompt to create the brief.md content:
 
-```
-Provide a concise and comprehensive description of this project, highlighting its main objectives, key features, used technologies and significance. Then, write this description into a text file named appropriately to reflect the project's content, ensuring clarity and professionalism in the writing. Stay brief and short.
-```
+`
+    Provide a concise and comprehensive description of this project, highlighting its main objectives, key features, used technologies and significance. Then, write this description into a text file named appropriately to reflect the project's content, ensuring clarity and professionalism in the writing. Stay brief and short.
+`
 
 2. `product.md`:
    - Why this project exists
@@ -306,14 +306,14 @@ Example simple task entry:
 ```
 
 Example complex task entry (in tasks.md):
-```markdown
+`
 ### Complex Tasks (Detailed Task Files)
 
 1. **[Add New External System Connector](connector-integration-task.md)**
    - **Purpose**: Create a new integration connector to sync data from external systems
    - **Complexity**: High - 5 phases, multiple files
    - **Files Created**: Registration module, adapter, materializer, tests
-```
+`
 
 #### Task Template Files: Read-Only Reference
 
