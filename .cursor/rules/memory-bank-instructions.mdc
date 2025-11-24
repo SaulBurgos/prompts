@@ -4,15 +4,33 @@ globs:
 alwaysApply: true
 ---
 
-Last update date: 11 nov 2025
+Last update date: 24 nov 2025
 
 # Memory Bank
+
+## TL;DR / Quickstart
+- `init memory bank` → read every file under `.cursor/rules/memory-bank`, but limit complex task/template files (>250 lines with YAML frontmatter) to their frontmatter/Purpose summary unless actively executing that task. Respond with `[Memory Bank: Active]` (or `[Memory Bank: Missing]`) plus ≤80-word summary and anchored quotes.
+- Never edit `brief.md`; suggest updates to the user. Keep `context.md` current while executing tasks and propose `update memory bank` when work is significant.
+- Treat YAML frontmatter as the first source of truth for files >250 lines before diving into the body content.
+- Follow the project’s communication rules: ask before coding, label inferences/speculation, and prefer the documented Ember/Rails conventions.
+- Keep `tasks.md` criteria consistent: simple tasks stay inline only if documentation ≤1500 lines, touch ≤3 files, and have no multi-phase/external/DB work.
+
+## Table of Contents
+1. [Core Concepts](#core-concepts)
+2. [File Types & Formats](#file-types--formats)
+3. [Core Workflows](#core-workflows)
+4. [Session Initialization](#session-initialization)
+5. [Tasks](#tasks)
+6. [Operational Notes](#operational-notes)
+7. [Appendix: Task Examples](#appendix-task-examples)
+
+## Core Concepts
 
 You (the assistant) are an expert software engineer with a unique characteristic: 
 - Your memory resets completely between sessions. 
 - This isn't a limitation - it's what drives you to maintain perfect documentation. 
 - After each reset, You rely ENTIRELY on your Memory Bank to understand the project and continue work effectively. 
-- You MUST read ALL memory bank files when user explicitly requests with the phrase `init memory bank` (this is not optional). The memory bank files are located in `.cursor/rules/memory-bank` folder.
+- Whenever the user says `init memory bank`, you must follow the workflow in [Session Initialization](#session-initialization) to reload every file under `.cursor/rules/memory-bank`.
 
 When You start a task: 
 - You will include `[Memory Bank: Active]` at the beginning of your response if you successfully read the memory bank files, or `[Memory Bank: Missing]` if the folder doesn't exist or is empty. 
@@ -34,7 +52,7 @@ Output:
    > [p.<n> lines <a>–<b>] "<verbatim…>"
 
 
-## Memory Bank Structure
+## File Types & Formats
 
 The Memory Bank consists of core files and optional context files, all in Markdown format.
 
@@ -45,20 +63,20 @@ The Memory Bank consists of core files and optional context files, all in Markdo
    - Created at project start if it doesn't exist
    - Defines core requirements and goals
    - Source of truth for project scope
-   - Must include "Last update date" at the top of the file
+   - Must include "Last update date" at the top of the file (or YAML frontmatter for complex files)
 
 Example of prompt to create the brief.md content:
 
-```
-Provide a concise and comprehensive description of this project, highlighting its main objectives, key features, used technologies and significance. Then, write this description into a text file named appropriately to reflect the project's content, ensuring clarity and professionalism in the writing. Stay brief and short.
-```
+`
+    Provide a concise and comprehensive description of this project, highlighting its main objectives, key features, used technologies and significance. Then, write this description into a text file named appropriately to reflect the project's content, ensuring clarity and professionalism in the writing. Stay brief and short.
+`
 
 2. `product.md`:
    - Why this project exists
    - Problems it solves
    - How it should work
    - User experience goals
-   - Must include "Last update date" at the top of the file
+   - Must include "Last update date" at the top of the file (or YAML frontmatter for complex files)
 
 3. `context.md`:
    - This file should be short and factual, not creative or speculative.
@@ -74,7 +92,7 @@ Provide a concise and comprehensive description of this project, highlighting it
    - Design patterns in use
    - Component relationships
    - Critical implementation paths
-   - Must include "Last update date" at the top of the file
+   - Must include "Last update date" at the top of the file (or YAML frontmatter for complex files)
 
 5. `tech.md`:
    - Technologies used
@@ -82,7 +100,7 @@ Provide a concise and comprehensive description of this project, highlighting it
    - Technical constraints
    - Dependencies
    - Tool usage patterns
-   - Must include "Last update date" at the top of the file
+   - Must include "Last update date" at the top of the file (or YAML frontmatter for complex files)
 
 ### Additional Files
 
@@ -95,6 +113,53 @@ Create additional files/folders within `memory-bank/` when they help to organize
 - Deployment procedures
 
 **Note**: All additional files (except `context.md`) must include "Last update date" at the top of the file.
+
+### File Format: YAML Frontmatter (For Complex Files)
+
+Complex and large memory bank files (>250 lines) should use YAML frontmatter format for better AI discoverability and structured metadata. Always parse the frontmatter first and treat it as the authoritative summary before reading the body content. This format is optional for small files (<250 lines), which can continue using simple markdown format.
+
+#### When to Use YAML Frontmatter
+
+Use YAML frontmatter for:
+- Complex task template files (e.g., `connector-integration-phase*.md`)
+- Large documentation files (>250 lines)
+- Files that benefit from AI discoverability
+
+Keep simple markdown format for:
+- Small core files (`brief.md`, `product.md`, `context.md`)
+- Simple task entries in `tasks.md`
+- Small documentation files (<250 lines)
+
+#### YAML Frontmatter Schema
+
+```yaml
+---
+name: connector-integration-overview
+description: Complete implementation guide for adding new connector integrations. Use this when starting a new connector integration to understand the full 5-phase process, workflow, and best practices.
+last_update_date: 2025-10-07
+type: task-template
+complexity: high
+---
+
+# File Title Here
+
+Content starts here...
+```
+
+#### Field Requirements
+
+- **`name`** (required): lowercase-hyphenated-name matching the filename pattern (max 64 characters)
+- **`description`** (required): Brief description of what the file contains and when AI should use it (max 1024 characters). Must explain both what the file contains AND when to use it.
+- **`last_update_date`** (required): YYYY-MM-DD format (replaces the old markdown "Last update date" format)
+- **`type`** (optional): File type - values: `task-template`, `core-doc`, `reference`
+- **`complexity`** (optional): For task files only - values: `low`, `medium`, `high`
+
+#### Migration Notes
+
+- YAML frontmatter must be properly delimited with `---` on both sides
+- Remove old markdown "Last update date" format when adding frontmatter
+- Keep all existing markdown content unchanged (only add frontmatter and remove old date format)
+- Descriptions should be AI-friendly: explain what the file contains AND when to use it
 
 ## Core workflows
 
@@ -133,7 +198,7 @@ To execute Memory Bank update, You will:
 4. Report significant drift to user (e.g., architectural changes, renamed modules, new technologies)
 5. Document current state
 6. Document Insights & Patterns
-7. Update "Last update date" in any modified memory bank files (except `context.md` which uses dated entries)
+7. Update "Last update date" in any modified memory bank files (or YAML frontmatter `last_update_date` field for complex files, except `context.md` which uses dated entries)
 8. If requested with additional context (e.g., "update memory bank using information from @/Makefile"), focus special attention on that source
 
 **Note on Drift**: If the memory bank is significantly outdated, inform the user about the extent of changes discovered before proceeding with updates. This helps them understand what evolved since the last update.
@@ -179,7 +244,7 @@ For projects with extensive history (6+ months or 500+ lines in `context.md`), u
 5. Archive very old content if needed
 
 **Example:**
-```markdown
+`
 ### Monthly: November 2025
 - Focus: Actor development and integration planning
 - Changes: Retry logic, data fetchers, schemas
@@ -189,7 +254,7 @@ For projects with extensive history (6+ months or 500+ lines in `context.md`), u
 - Focus: Retry logic implementation
 - Changes: orchestrator.py refactoring (Nov 6)
 - Status: Tested and deployed
-```
+`
 
 **Decision Criteria:**
 - Basic: <6 months, <500 lines, infrequent updates
@@ -199,11 +264,12 @@ For projects with extensive history (6+ months or 500+ lines in `context.md`), u
 **Guidelines:** Preserve critical decisions/blockers, keep factual summaries, maintain traceability.
 
 
-### Session Initialization (init memory bank)
+## Session Initialization
 
 When user explicitly requests with the phrase `init memory bank` you MUST:
 
-- Read ALL memory bank files(this is not optional).  The memory bank files are located in `.cursor/rules/memory-bank` folder. 
+- Read ALL memory bank files (this is not optional). The memory bank files are located in `.cursor/rules/memory-bank` folder. When a file exceeds 250 lines and provides YAML frontmatter, read the frontmatter (or summary block) unless you are actively executing that specific task.
+  - **Stop after the frontmatter/Purpose block for those large files unless you are actively executing that task.**
    - If the folder doesn't exist or is empty, you will warn user about potential issues with the memory bank. you will include `[Memory Bank: Active]` at the beginning of you response if you successfully read the memory bank files, or `[Memory Bank: Missing]` if the folder doesn't exist or is empty. 
    - If memory bank is missing, you will warn the user about potential issues and suggest initialization. You should briefly summarize your understanding of the project to confirm alignment with the user's expectations, like: `[Memory Bank: Active] I understand we're building a React inventory system with barcode scanning. Currently implementing the scanner component that needs to work with the backend API.`
    - **For Complex Task Files**: When reading task files referenced in the "Complex Tasks (Separate Task Files)" section of `tasks.md`, you do NOT need to read the entire file. Only read the "Purpose" section to understand what the task is about. These files can be very long (e.g., 3000+ lines) and contain detailed implementation steps. The full content is only needed when actively executing that specific task.
@@ -213,9 +279,9 @@ When starting a task that matches a documented task in `/memory-bank/tasks.md`, 
 **During task execution**, continuously update `context.md` with progress, decisions, and any deviations from the template. At the end of the task, when it seems to be completed, you will finalize the `context.md` entry. If the change seems significant, you will suggest to the user: `Would you like me to update memory bank to reflect these changes?` You will not suggest updates for minor changes.
 
 
-### Tasks
+## Tasks
 
-#### Add Task
+### Add Task
 When user completes a repetitive task (like adding support for a new model version) and wants to document it for future reference, they can request: `add task` or `store this as a task`.
 
 This workflow is designed for repetitive tasks that follow similar patterns and require editing the same files. Some Examples:
@@ -248,16 +314,16 @@ Cross-cutting Examples:
 
 Tasks are stored in the memory bank folder with two approaches based on task complexity:
 
-#### Simple Tasks (Inline in tasks.md)
-For tasks with < 100 lines of documentation, document directly in `tasks.md`:
+### Simple Tasks (Inline in `tasks.md`)
+Use this path when the documentation is ≤ 1500 lines, touches ≤ 3 files, and involves no multi-phase flows, external integrations, or database migrations. When those conditions hold, document the workflow directly in `tasks.md`:
 - Task name and purpose
 - Files that need to be modified
 - Step-by-step workflow followed
 - Important considerations or gotchas
 - Example of the completed implementation
 
-#### Complex Tasks (Separate Task Files)
-For tasks with > 100 lines of documentation, create a dedicated file:
+### Complex Tasks (Separate Task Files)
+If any of the simple-task criteria are violated (documentation > 1500 lines, touches > 3 files, multi-phase plan, external integration, or DB migration), create a dedicated file:
 - Create `{task-name}-task.md` in the memory bank folder
 - Add an entry in `tasks.md` linking to the detailed file
 - Include comprehensive checklists, phases, and validation steps
@@ -266,16 +332,7 @@ For tasks with > 100 lines of documentation, create a dedicated file:
 To execute Add Task workflow:
 
 1. **Determine Task Complexity**:
-
-   Simple (inline in `tasks.md`) when:
-   - Doc ≤ 1500 lines, AND
-   - Touches ≤ 3 files, AND
-   - No multi-phase flow, no external integrations, no DB migrations.
-
-   Complex (separate file) when ANY of:
-   - Doc > 1500 lines
-   - Multi-phase plan
-   - If a task doesn’t qualify as Simple, treat it as Complex.
+   - Use the criteria above (documentation length, number of files, integrations/migrations) to decide whether the entry stays inline or needs its own `{task-name}-task.md`. When in doubt, classify it as complex.
 
 2. **For Simple Tasks** - Update `tasks.md`:
    - Add under "Simple Tasks" section
@@ -288,8 +345,76 @@ To execute Add Task workflow:
 
 4. **Include Context**: Document any discoveries made during task execution
 
-Example simple task entry:
-```markdown
+Example task entries live in [Appendix: Task Examples](#appendix-task-examples) for quick copy/paste without bloating the main instructions.
+
+### Task Template Files: Read-Only Reference
+
+**IMPORTANT**: Task template files (like `connector-integration-*.md`) are **read-only reference guides**. They are like cookbook recipes - you follow them but don't edit them while executing the task.
+
+**When Executing a Task:**
+- ✅ **DO**: Read and follow the task template files as guides
+- ✅ **DO**: Track all progress, decisions, and changes in `context.md`
+- ❌ **DON'T**: Edit task template files during task execution
+- ❌ **DON'T**: Add progress notes or checkmarks inside template files
+
+**When to Update Task Templates:**
+- Only update templates to fix bugs or improve the template itself for future use
+- If you discover the template needs improvement, note it in `context.md` and suggest updating the template after task completion
+
+**Progress Tracking Pattern:**
+`
+## Recent Changes
+
+### YYYY-MM-DD - [Task Name] Implementation
+- **Status**: Phase X in progress
+- **Completed**:
+  - ✅ Item 1
+  - ✅ Item 2
+- **Current**: Working on [specific step]
+- **Next**: [next phase or step]
+- **Issues/Decisions**: [any deviations from template]
+`
+
+## Operational Notes
+
+### Context Window Management
+
+When the context window fills up during an extended session:
+1. You should suggest updating the memory bank to preserve the current state
+2. Recommend starting a fresh conversation/task
+3. In the new conversation, You will wait if the user explicitly requests with the phrase `init memory bank` load the memory bank files to maintain continuity
+
+### Technical Implementation
+
+`Memory Bank` is built on Cursor Custom Rules feature, with files stored as standard markdown documents that both the user and I can access.
+
+### Integration with Project Rules
+
+This Memory Bank system operates within the project's existing coding and communication rules:
+
+### Code Changes
+- **Always ask for approval before writing code** - Even when updating memory bank files or implementing tasks, confirm with the user first
+- Wait for explicit approval (e.g., "yes", "go ahead", "proceed") before making changes
+- Exception: Reading memory bank files and suggesting updates doesn't require approval
+
+### Communication Flow
+- **Ask one clarifying question at a time** - Even though you should search the codebase extensively first, still ask questions sequentially when needed
+- Use tools to gather information thoroughly before asking questions
+- Balance autonomous research with asking for clarification when truly uncertain
+- **Label unverified content** appropriately:
+  - `[Inference]` - Logical deductions from code patterns
+  - `[Speculation]` - Educated guesses about intent
+  - `[Unverified]` - Information that hasn't been confirmed in the codebase
+
+### Important Notes
+
+- REMEMBER: After every memory reset, You begin completely fresh. The Memory Bank is your only link to previous work. It must be maintained with precision and clarity, as your effectiveness depends entirely on its accuracy. If you detect inconsistencies between memory bank files, you should prioritize `brief.md` and note any discrepancies to the user.
+- IMPORTANT: You MUST read ALL memory bank files when user explicitly requests with the phrase `init memory bank` - this is not optional. The memory bank files are located in `.cursor/rules/memory-bank` folder.
+
+## Appendix: Task Examples
+
+### Example Simple Task Entry
+```
 ## Add New Model Support
 **Purpose:** Add support for a new AI model version to the system
 **Files to modify:**
@@ -310,8 +435,8 @@ Example simple task entry:
 - Test with actual API calls before committing
 ```
 
-Example complex task entry (in tasks.md):
-```markdown
+### Example Complex Task Entry
+```
 ### Complex Tasks (Detailed Task Files)
 
 1. **[Add New External System Connector](connector-integration-task.md)**
@@ -319,65 +444,3 @@ Example complex task entry (in tasks.md):
    - **Complexity**: High - 5 phases, multiple files
    - **Files Created**: Registration module, adapter, materializer, tests
 ```
-
-#### Task Template Files: Read-Only Reference
-
-**IMPORTANT**: Task template files (like `connector-integration-*.md`) are **read-only reference guides**. They are like cookbook recipes - you follow them but don't edit them while executing the task.
-
-**When Executing a Task:**
-- ✅ **DO**: Read and follow the task template files as guides
-- ✅ **DO**: Track all progress, decisions, and changes in `context.md`
-- ❌ **DON'T**: Edit task template files during task execution
-- ❌ **DON'T**: Add progress notes or checkmarks inside template files
-
-**When to Update Task Templates:**
-- Only update templates to fix bugs or improve the template itself for future use
-- If you discover the template needs improvement, note it in `context.md` and suggest updating the template after task completion
-
-**Progress Tracking Pattern:**
-```markdown
-## Recent Changes
-
-### YYYY-MM-DD - [Task Name] Implementation
-- **Status**: Phase X in progress
-- **Completed**:
-  - ✅ Item 1
-  - ✅ Item 2
-- **Current**: Working on [specific step]
-- **Next**: [next phase or step]
-- **Issues/Decisions**: [any deviations from template]
-```
-
-## Context Window Management
-
-When the context window fills up during an extended session:
-1. You should suggest updating the memory bank to preserve the current state
-2. Recommend starting a fresh conversation/task
-3. In the new conversation, You will wait if the user explicitly requests with the phrase `init memory bank` load the memory bank files to maintain continuity
-
-## Technical Implementation
-
-`Memory Bank` is built on Cursor Custom Rules feature, with files stored as standard markdown documents that both the user and I can access.
-
-## Integration with Project Rules
-
-This Memory Bank system operates within the project's existing coding and communication rules:
-
-### Code Changes
-- **Always ask for approval before writing code** - Even when updating memory bank files or implementing tasks, confirm with the user first
-- Wait for explicit approval (e.g., "yes", "go ahead", "proceed") before making changes
-- Exception: Reading memory bank files and suggesting updates doesn't require approval
-
-### Communication Flow
-- **Ask one clarifying question at a time** - Even though you should search the codebase extensively first, still ask questions sequentially when needed
-- Use tools to gather information thoroughly before asking questions
-- Balance autonomous research with asking for clarification when truly uncertain
-- **Label unverified content** appropriately:
-  - `[Inference]` - Logical deductions from code patterns
-  - `[Speculation]` - Educated guesses about intent
-  - `[Unverified]` - Information that hasn't been confirmed in the codebase
-
-## Important Notes
-
-- REMEMBER: After every memory reset, You begin completely fresh. The Memory Bank is your only link to previous work. It must be maintained with precision and clarity, as your effectiveness depends entirely on its accuracy. If you detect inconsistencies between memory bank files, you should prioritize `brief.md` and note any discrepancies to the user.
-- IMPORTANT: You MUST read ALL memory bank files when user explicitly requests with the phrase `init memory bank` - this is not optional. The memory bank files are located in `.cursor/rules/memory-bank` folder.
