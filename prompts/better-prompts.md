@@ -1,3 +1,9 @@
+
+## Notes
+
+- Need improvements
+
+
 # Prompt
 
 ```
@@ -32,6 +38,3 @@ Ask relevant questions about the prompt and its subject.
 - Provide background details, preferences, or additional information for refining responses.
 ```
 
-## Notes
-
-- Need improvements
