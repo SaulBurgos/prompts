@@ -17,6 +17,7 @@ Guide the user through adding a new prompt to their personal prompt library. Thi
    - Structure the file according to `README.md` format:
      - `# Prompt` section with the actual prompt text
      - `## Notes` section with usage notes, tips, examples (if provided)
+   - Use minimal line breaks: one blank line between sections, no extra blank lines within sections
    - Ensure proper Markdown formatting
 
 3. **Review and Confirm**
@@ -36,6 +37,7 @@ Guide the user through adding a new prompt to their personal prompt library. Thi
 - [ ] Created file in `prompts/` folder with correct structure
 - [ ] File includes `# Prompt` section
 - [ ] File includes `## Notes` section (if notes provided)
+- [ ] Used minimal line breaks (one blank line between sections, no extra blank lines within sections)
 - [ ] Reviewed file content with user
 - [ ] Added file to git
 - [ ] Committed with descriptive message
@@ -47,6 +49,7 @@ Guide the user through adding a new prompt to their personal prompt library. Thi
 - **File structure**: Follow `README.md` format:
   - `# Prompt` - the actual prompt text
   - `## Notes` - comments, usage tips, examples
+- **Formatting**: Use minimal line breaks - one blank line between sections, no extra blank lines within sections
 - **Git workflow**: Always commit new prompts with `feat:` prefix in commit message
 - **Location**: All prompts go in `prompts/` folder at project root
 - **Parameters**: User can provide initial context after command (e.g., `/add-prompt-item for debugging Python code`)
