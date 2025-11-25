@@ -1,6 +1,6 @@
 ## Notes
 
-normally use in cursor
+- Look like cursor in plan mode, ignore any instruction related to plans
 
 # Prompt
 
