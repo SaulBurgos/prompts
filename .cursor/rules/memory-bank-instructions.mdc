@@ -105,9 +105,9 @@ Example of prompt to create the brief.md content:
 ### Additional Files
 
 Create additional files/folders within `memory-bank/` when they help to organize:
-- `tasks.md`: Documentation of repetitive tasks and their workflows
-- Complex feature documentation
-- Integration specifications
+- `tasks.md`: Index of **repetitive tasks and their workflows only** (simple tasks; see criteria below). Do NOT store project-wide architectural principles or long-form specifications here.
+- Complex feature documentation: Use dedicated files (for example, `{task-name}-task.md`) for multi-phase or high-complexity work.
+- Integration specifications: Use separate integration docs (for example, `*-integration.md`) or task templates, and reference them from `tasks.md` when relevant.
 - API documentation
 - Testing strategies
 - Deployment procedures
@@ -343,7 +343,11 @@ To execute Add Task workflow:
    - Add entry in `tasks.md` under "Complex Tasks" with link
    - Structure with phases, prerequisites, checklists, validation steps
 
-4. **Include Context**: Document any discoveries made during task execution
+4. **Include Context (in the right file)**:
+   - Document any discoveries made during task execution, but record them in the corresponding file based on the memory bank description of the files:
+     - Task-specific workflow steps or gotchas → `tasks.md` or `{task-name}-task.md`
+     - Project-wide architecture or connector principles (for example, "Aspire is the reference connector") → `architecture.md`
+     - Chronological progress, decisions, and status → `context.md`
 
 Example task entries live in [Appendix: Task Examples](#appendix-task-examples) for quick copy/paste without bloating the main instructions.
 
