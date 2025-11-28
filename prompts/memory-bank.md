@@ -8,10 +8,10 @@ Based on this paper: https://arxiv.org/abs/2305.10250
 # Memory Bank
 
 ## TL;DR / Quickstart
-- `init memory bank` → read every file under `.cursor/rules/memory-bank`, but limit complex task/template files (>250 lines with YAML frontmatter) to their frontmatter/Purpose summary unless actively executing that task. Respond with `[Memory Bank: Active]` (or `[Memory Bank: Missing]`) plus ≤80-word summary and anchored quotes.
+- `init memory bank` → read only root-level files under `.cursor/rules/memory-bank/`. For subfolders, read only their overview file (e.g., `connector-integration-tasks/connector-integration-overview.md`). Limit complex files (>250 lines with YAML frontmatter) to frontmatter/Purpose summary unless actively executing that task. Respond with `[Memory Bank: Active]` (or `[Memory Bank: Missing]`) plus ≤80-word summary and anchored quotes.
 - Never edit `brief.md`; suggest updates to the user. Keep `context.md` current while executing tasks and propose `update memory bank` when work is significant.
 - Treat YAML frontmatter as the first source of truth for files >250 lines before diving into the body content.
-- Follow the project’s communication rules: ask before coding, label inferences/speculation, and prefer the documented Ember/Rails conventions.
+- Follow the project's communication rules: ask before coding, label inferences/speculation, and prefer the documented Ember/Rails conventions.
 - Keep `tasks.md` criteria consistent: simple tasks stay inline only if documentation ≤1500 lines, touch ≤3 files, and have no multi-phase/external/DB work.
 
 ## Table of Contents
@@ -273,6 +273,7 @@ When user explicitly requests with the phrase `init memory bank` you MUST:
    - If the folder doesn't exist or is empty, you will warn user about potential issues with the memory bank. you will include `[Memory Bank: Active]` at the beginning of you response if you successfully read the memory bank files, or `[Memory Bank: Missing]` if the folder doesn't exist or is empty. 
    - If memory bank is missing, you will warn the user about potential issues and suggest initialization. You should briefly summarize your understanding of the project to confirm alignment with the user's expectations, like: `[Memory Bank: Active] I understand we're building a React inventory system with barcode scanning. Currently implementing the scanner component that needs to work with the backend API.`
    - **For Complex Task Files**: When reading task files referenced in the "Complex Tasks (Separate Task Files)" section of `tasks.md`, you do NOT need to read the entire file. Only read the "Purpose" section to understand what the task is about. These files can be very long (e.g., 3000+ lines) and contain detailed implementation steps. The full content is only needed when actively executing that specific task.
+   - **Subfolder Rule**: During initialization, read only root-level files in `memory-bank/`. For subfolders (e.g., `connector-integration-tasks/`), read only the overview file (the file that describes the folder's contents, typically named `*-overview.md`). Do NOT read individual files within subfolders unless actively executing that specific task.
 
 When starting a task that matches a documented task in `/memory-bank/tasks.md`, you should mention this and follow the documented workflow to ensure no steps are missed. If the task was repetitive and might be needed again, you should suggest: `"Would you like me to add this task to the "memory bank" for future reference?"`
 
