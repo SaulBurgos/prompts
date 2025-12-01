@@ -1,6 +1,9 @@
 ## Notes
 
-Based on this paper: https://arxiv.org/abs/2305.10250
+Based on this paper: 
+- https://arxiv.org/abs/2305.10250
+- https://www.humanlayer.dev/blog/writing-a-good-claude-md
+- https://kilo.ai/docs/advanced-usage/memory-bank
 
 # Prompt
 
