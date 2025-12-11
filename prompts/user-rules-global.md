@@ -29,9 +29,5 @@
 - For commit messages be extremely concise and sacrife grammar for the sake if concision.
 - ABSOLUTELY NEVER run destructive git operations (e.g., git reset --hard, rm, git checkout/git restore to an older commit) unless the user gives an explicit, written instruction in this conversation. Treat these commands as catastrophic; if you are even slightly unsure, stop and ask before touching them.
 
-## When you creating a plan
-- Once you have created a solid plan, break it down into small, sequential, and iterative chunks that build on each other. Continue breaking these chunks into progressively smaller steps until you are confident they are right-sized for safe, and manual  testing implementation.  
-- At the end of each phase, give me list of unresolved questions, if any. 
-- Each plan Must have this instruction: "After each phase or step is completed by you... you need ask the user to review it and approve it in order to move to the next step or phase"
 
 ```
