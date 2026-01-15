@@ -1,18 +1,16 @@
 ---
 description: Memory Bank is a system of structured documentation that enables AI assitants to better understand your project and maintain context across coding sessions.
-globs: 
-alwaysApply: true
+alwaysApply: false
 ---
-
-Last update date: 24 nov 2025
+Last update date: 12 dec 2025
 
 # Memory Bank
 
 ## TL;DR / Quickstart
-- `init memory bank` → read every file under `.cursor/rules/memory-bank`, but limit complex task/template files (>250 lines with YAML frontmatter) to their frontmatter/Purpose summary unless actively executing that task. Respond with `[Memory Bank: Active]` (or `[Memory Bank: Missing]`) plus ≤80-word summary and anchored quotes.
+- `init memory bank` → read only root-level files under `.cursor/rules/memory-bank/`. For subfolders, read only their overview file (e.g., `connector-integration-tasks/connector-integration-overview.md`). Limit complex files (>250 lines with YAML frontmatter) to frontmatter/Purpose summary unless actively executing that task. Respond with `[Memory Bank: Active]` (or `[Memory Bank: Missing]`) plus ≤80-word summary and anchored quotes.
 - Never edit `brief.md`; suggest updates to the user. Keep `context.md` current while executing tasks and propose `update memory bank` when work is significant.
 - Treat YAML frontmatter as the first source of truth for files >250 lines before diving into the body content.
-- Follow the project’s communication rules: ask before coding, label inferences/speculation, and prefer the documented Ember/Rails conventions.
+- Follow the project's communication rules: ask before coding, label inferences/speculation, and prefer the documented Ember/Rails conventions.
 - Keep `tasks.md` criteria consistent: simple tasks stay inline only if documentation ≤1500 lines, touch ≤3 files, and have no multi-phase/external/DB work.
 
 ## Table of Contents
@@ -92,6 +90,7 @@ Example of prompt to create the brief.md content:
    - Design patterns in use
    - Component relationships
    - Critical implementation paths
+   - Keep high-level and concise; if the file exceeds 150 lines, move detailed flows or diagrams to sub-docs (e.g., data-flows.md) and link them in the frontmatter.
    - Must include "Last update date" at the top of the file (or YAML frontmatter for complex files)
 
 5. `tech.md`:
@@ -132,7 +131,7 @@ Keep simple markdown format for:
 
 #### YAML Frontmatter Schema
 
-```yaml
+`yaml
 ---
 name: connector-integration-overview
 description: Complete implementation guide for adding new connector integrations. Use this when starting a new connector integration to understand the full 5-phase process, workflow, and best practices.
@@ -144,7 +143,7 @@ complexity: high
 # File Title Here
 
 Content starts here...
-```
+`
 
 #### Field Requirements
 
@@ -268,11 +267,13 @@ For projects with extensive history (6+ months or 500+ lines in `context.md`), u
 
 When user explicitly requests with the phrase `init memory bank` you MUST:
 
-- Read ALL memory bank files (this is not optional). The memory bank files are located in `.cursor/rules/memory-bank` folder. When a file exceeds 250 lines and provides YAML frontmatter, read the frontmatter (or summary block) unless you are actively executing that specific task.
+- Read ALL memory bank files (this is not optional) in the following order: brief.md → product.md → architecture.md → tech.md → context.md  → tasks.md. 
+- The memory bank files are located in `.cursor/rules/memory-bank` folder. When a file exceeds 250 lines and provides YAML frontmatter, read the frontmatter (or summary block) unless you are actively executing that specific task.
   - **Stop after the frontmatter/Purpose block for those large files unless you are actively executing that task.**
    - If the folder doesn't exist or is empty, you will warn user about potential issues with the memory bank. you will include `[Memory Bank: Active]` at the beginning of you response if you successfully read the memory bank files, or `[Memory Bank: Missing]` if the folder doesn't exist or is empty. 
    - If memory bank is missing, you will warn the user about potential issues and suggest initialization. You should briefly summarize your understanding of the project to confirm alignment with the user's expectations, like: `[Memory Bank: Active] I understand we're building a React inventory system with barcode scanning. Currently implementing the scanner component that needs to work with the backend API.`
    - **For Complex Task Files**: When reading task files referenced in the "Complex Tasks (Separate Task Files)" section of `tasks.md`, you do NOT need to read the entire file. Only read the "Purpose" section to understand what the task is about. These files can be very long (e.g., 3000+ lines) and contain detailed implementation steps. The full content is only needed when actively executing that specific task.
+   - **Subfolder Rule**: During initialization, read only root-level files in `memory-bank/`. For subfolders (e.g., `connector-integration-tasks/`), read only the overview file (the file that describes the folder's contents, typically named `*-overview.md`). Do NOT read individual files within subfolders unless actively executing that specific task.
 
 When starting a task that matches a documented task in `/memory-bank/tasks.md`, you should mention this and follow the documented workflow to ensure no steps are missed. If the task was repetitive and might be needed again, you should suggest: `"Would you like me to add this task to the "memory bank" for future reference?"`
 
@@ -418,7 +419,7 @@ This Memory Bank system operates within the project's existing coding and commun
 ## Appendix: Task Examples
 
 ### Example Simple Task Entry
-```
+`
 ## Add New Model Support
 **Purpose:** Add support for a new AI model version to the system
 **Files to modify:**
@@ -437,14 +438,14 @@ This Memory Bank system operates within the project's existing coding and commun
 - Check Google's documentation for exact token limits
 - Ensure backward compatibility with existing configurations
 - Test with actual API calls before committing
-```
+`
 
 ### Example Complex Task Entry
-```
+`
 ### Complex Tasks (Detailed Task Files)
 
 1. **[Add New External System Connector](connector-integration-task.md)**
    - **Purpose**: Create a new integration connector to sync data from external systems
    - **Complexity**: High - 5 phases, multiple files
    - **Files Created**: Registration module, adapter, materializer, tests
-```
+`
