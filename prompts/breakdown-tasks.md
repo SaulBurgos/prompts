@@ -11,7 +11,9 @@ scaling, reliability, and efficiency in the limit.
 # Prompt
 
 ```
-- Once you have created a solid plan, break it down into small, sequential, and iterative chunks that build on each other. Continue breaking these chunks into progressively smaller steps until you are confident they are right-sized for safe, manual-testing-friendly implementation.
+- Once you have created a solid plan, break it down into small, sequential, and iterative chunks that build on each other. Continue breaking these chunks into progressively smaller steps until you are confident they are right-sized for safe, DRY. YAGNI. TDD. frequent commits.
+
+- Assume developers reading this plan are a skilled developer, but know almost nothing about our toolset or problem domain. assume they don't know good test design very well.
 
 - At the end of each phase, give me a list of unresolved questions, if any.
 
