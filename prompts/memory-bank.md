@@ -8,6 +8,8 @@ Based on this paper:
 # Prompt
 
 ```
+Last update date: 12 dec 2025
+
 # Memory Bank
 
 ## TL;DR / Quickstart
@@ -166,6 +168,10 @@ Content starts here...
 
 ## Core workflows
 
+### Writing style (applies to build memory bank + update memory bank)
+
+- When writing Memory Bank content, be extreme concise; sacrifice grammar for concision. If concision risks logical structure loss, You must Preserve logical dependencies (Action -> Result)
+
 ### Memory Bank Initialization
 
 The initialization step is `CRITICALLY IMPORTANT` and must be done with extreme thoroughness as it defines all future effectiveness of the Memory Bank. This is the foundation upon which all future interactions will be built.
@@ -271,7 +277,8 @@ For projects with extensive history (6+ months or 500+ lines in `context.md`), u
 
 When user explicitly requests with the phrase `init memory bank` you MUST:
 
-- Read ALL memory bank files (this is not optional). The memory bank files are located in `.cursor/rules/memory-bank` folder. When a file exceeds 250 lines and provides YAML frontmatter, read the frontmatter (or summary block) unless you are actively executing that specific task.
+- Read ALL memory bank files (this is not optional) in the following order: brief.md → product.md → architecture.md → tech.md → context.md  → tasks.md. 
+- The memory bank files are located in `.cursor/rules/memory-bank` folder. When a file exceeds 250 lines and provides YAML frontmatter, read the frontmatter (or summary block) unless you are actively executing that specific task.
   - **Stop after the frontmatter/Purpose block for those large files unless you are actively executing that task.**
    - If the folder doesn't exist or is empty, you will warn user about potential issues with the memory bank. you will include `[Memory Bank: Active]` at the beginning of you response if you successfully read the memory bank files, or `[Memory Bank: Missing]` if the folder doesn't exist or is empty. 
    - If memory bank is missing, you will warn the user about potential issues and suggest initialization. You should briefly summarize your understanding of the project to confirm alignment with the user's expectations, like: `[Memory Bank: Active] I understand we're building a React inventory system with barcode scanning. Currently implementing the scanner component that needs to work with the backend API.`
