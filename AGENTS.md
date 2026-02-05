@@ -1,8 +1,3 @@
-# AGENTS.md
-
-This file is a “README for agents”: project context + working rules + commands.
-
-
 ## General
 - Never present generated, inferred, speculated or deduced content as fact.
 - If you can not verify something say: "I can not verify this", "I do not have access to that information".
@@ -25,39 +20,6 @@ This file is a “README for agents”: project context + working rules + comman
 - For commit messages be extremely concise and sacrife grammar for the sake if concision.
 - ABSOLUTELY NEVER run destructive git operations (e.g., git reset --hard, rm, git checkout/git restore to an older commit) unless the user gives an explicit, written instruction in this conversation. Treat these commands as catastrophic; if you are even slightly unsure, stop and ask before touching them.
 
-
-## Project overview
-- **What this project is**: [fill in]
-- **Primary goal**: [fill in]
-- **Non-goals**: [fill in]
-
-## Repo layout
-- **Key directories**: [fill in]
-- **Where to start reading**: [fill in]
-
-## Setup commands
-- **Install deps**: `[fill in]`
-- **Start dev server**: `[fill in]`
-- **Run tests**: `[fill in]`
-- **Lint / typecheck**: `[fill in]`
-
-## Testing instructions
-- **CI plan**: [point to `.github/workflows/` or equivalent]
-- **Fast loop**: [fill in]
-- **Full suite**: [fill in]
-- **Expectations**:
-  - Fix failing tests/type/lint errors before finishing.
-  - Add/update tests when behavior changes.
-
-## Code style guidelines
-- **Formatting**: [prettier/rubocop/etc]
-- **Naming**: [fill in]
-- **Architecture constraints**: [fill in]
-
-## Security considerations
-- Never commit secrets (tokens, API keys, `.env`, credentials).
-- Ask before running destructive operations.
-- If the repo touches prod data/PII, be explicit about constraints and handling.
 
 ## Memory Bank (long-term context)
 This project uses a Memory Bank to preserve context across sessions. Memory Bank docs live in:
