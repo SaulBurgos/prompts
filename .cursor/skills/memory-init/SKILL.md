@@ -12,7 +12,7 @@ description: Initialize a new Memory Bank by analyzing the project and drafting 
 ## Steps
 1. Review the repository structure, key code paths, and existing docs.
 2. Create `docs/memory-bank/` core files if missing:
-   - `brief.md`, `product.md`, `architecture.md`, `tech.md`, `context.md`, `tasks.md`.
+   - `brief.md`, `product.md`, `architecture.md`, `tech.md`, `context.md`.
 3. Draft concise initial content in each file.
 4. Ask the user to verify and correct the content, especially `brief.md`.
 5. Set `last_update_date` in all created or modified files.

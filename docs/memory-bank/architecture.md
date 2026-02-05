@@ -1,7 +1,7 @@
 ---
 name: architecture
 description: High-level system architecture, key decisions, and component relationships.
-last_update_date: 2026-02-04
+last_update_date: 2026-02-05
 ---
 
 # Architecture
@@ -19,7 +19,7 @@ last_update_date: 2026-02-04
 ## Key decisions
 - **File-based storage**: Prompts as Markdown files for simplicity and Git compatibility
 - **Git version control**: Full history tracking, branching for experiments, tagging for stable versions
-- **Memory Bank pattern**: Structured docs (`brief.md`, `product.md`, `architecture.md`, `tech.md`, `context.md`, `tasks.md`) for context preservation
+- **Memory Bank pattern**: Structured docs (`brief.md`, `product.md`, `architecture.md`, `tech.md`, `context.md`) for context preservation
 - **Cursor integration**: Native support for Cursor's command and skill systems
 
 ## Design patterns

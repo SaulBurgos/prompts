@@ -32,7 +32,6 @@ Read in order:
 3. `docs/memory-bank/architecture.md`
 4. `docs/memory-bank/tech.md`
 5. `docs/memory-bank/context.md`
-6. `docs/memory-bank/tasks.md`
 
 If a file uses YAML frontmatter, read the frontmatter first and treat it as authoritative. For
 very large files, read only the frontmatter/summary unless the task depends on details inside.
