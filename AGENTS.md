@@ -23,15 +23,7 @@
 
 ## Memory Bank (long-term context)
 This project uses a Memory Bank to preserve context across sessions. Memory Bank docs live in:
-`docs/memory-bank/`
-
-### Session start (always)
-Read in order:
-1. `docs/memory-bank/brief.md`
-2. `docs/memory-bank/product.md`
-3. `docs/memory-bank/architecture.md`
-4. `docs/memory-bank/tech.md`
-5. `docs/memory-bank/context.md`
+`/memory-bank/` folder
 
 If a file uses YAML frontmatter, read the frontmatter first and treat it as authoritative. For
 very large files, read only the frontmatter/summary unless the task depends on details inside.

@@ -6,19 +6,23 @@ description: Synchronize Memory Bank docs with the current project state after s
 # Memory Update
 
 ## When to use
-- After significant changes to code or architecture.
-- When the user requests `update memory bank`.
-- When you detect drift between docs and code.
+Memory Bank updates occur when:
+
+1. You or the User Discover new project patterns
+2. After implementing significant changes
+3. When user explicitly requests with the phrase `update memory bank` (MUST review ALL files)
+4. When context needs clarification
 
 ## Steps
-1. Read all Memory Bank files in `docs/memory-bank/`.
-2. Review recent changes in the codebase and compare against `architecture.md` and `tech.md`.
-3. Update `context.md` with a dated entry:
+1. Read all Memory Bank files in `docs/memory-bank/`. in the following order: 
+   brief.md → product.md → architecture.md → tech.md → context.md. 
+2. Identify discrepancies between memory bank documentation and current codebase
+3. Report significant drift to user (e.g., architectural changes, renamed modules, new technologies)
+4. Document current state
+5. Document Insights & Patterns
+6. Update `last_update_date` in any modified Memory Bank files.
+7. Update `context.md` with a dated entry:
    - `## YYYY-MM-DD - [Section Name]`
    - Include **Status**, **Recent changes**, and **Next steps**.
-4. Update `last_update_date` in any modified Memory Bank files.
 5. Report significant drift to the user.
 
-## Notes
-- Keep entries factual and concise.
-- Prioritize `brief.md` as the source of truth if conflicts appear.
