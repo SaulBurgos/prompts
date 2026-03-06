@@ -40,7 +40,12 @@ you must:
 - Provided your own technical assessment
 ```
 
-# Remove revisions
+## When you have do multipke revisions
 ```
-I understand completely. You want a clean, cohesive plan document that presents the final decisions and approach without all the revision history and back-and-forth. 
+Create a clean, cohesive plan document that presents the final decisions and approach without all the revision history and back-and-forth. 
+```
+
+## After plan execution or a Task
+```
+    Anything we should clean up or refactor?”
 ```
