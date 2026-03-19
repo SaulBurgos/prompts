@@ -100,7 +100,7 @@ Define the minimum viable breakthrough for this situation:
 If I restarted this entire project today, knowing what I know now, what would I build?
 ```
 
-## 11. "What are the hidden constraints I'm not questioning?"
+## 11. "What are the hidden constraints and hidden effects, I'm not questioning?"
 - Most problems hide fake walls.
 ```
 Given this situation, identify hidden or implicit constraints I might be assuming without noticing.
