@@ -40,7 +40,7 @@ you must:
 - Provided your own technical assessment
 ```
 
-## When you have do multipke revisions
+## When you have do multiple revisions
 ```
 Create a clean, cohesive plan document that presents the final decisions and approach without all the revision history and back-and-forth. 
 ```
@@ -48,4 +48,9 @@ Create a clean, cohesive plan document that presents the final decisions and app
 ## After plan execution or a Task
 ```
     Anything we should clean up or refactor?”
+```
+
+## If you have a rough idea of what you want but aren’t sure how to describe it well
+```
+Challenge my assumptions and turn my fuzzy idea into something concrete before writing code.
 ```
