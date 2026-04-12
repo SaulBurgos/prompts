@@ -54,3 +54,7 @@ Create a clean, cohesive plan document that presents the final decisions and app
 ```
 Challenge my assumptions and turn my fuzzy idea into something concrete before writing code.
 ```
+
+```
+our goal with out document is to produce a clear,pretty solid,straightforward, step-by-step specification that can be handed off to a developer. but before do that read the document and Make sure that the sections are cohesive, and make sense for the reader.
+```
